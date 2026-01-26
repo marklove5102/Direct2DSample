@@ -23,4 +23,7 @@
     <FxCompile Include="PixelShader.hlsl" />
     <FxCompile Include="PixelShader1.hlsl" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.md" />
+  </ItemGroup>
 </Project>
