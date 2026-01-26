@@ -50,8 +50,6 @@ void initD2D() {
     hr = d2dFactory->CreateDevice(dxgiDev.Get(), d2d.GetAddressOf());
     d2d.As(&d2dDev);
     hr = d2dDev->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE,dc.GetAddressOf());
-    ComPtr<IDXGIAdapter> adapter;
-    hr = dxgiDev->GetAdapter(adapter.GetAddressOf());
     RECT rc;
     GetClientRect(hwnd, &rc);
     DXGI_SWAP_CHAIN_DESC1 scd{};
@@ -101,7 +99,7 @@ LRESULT CALLBACK winProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         UINT newH = rc.bottom - rc.top;
         if (newW && newH)
         {
-            swap->ResizeBuffers(0, newW, newH, DXGI_FORMAT_UNKNOWN, allowTearing ? DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING : 0);
+            swap->ResizeBuffers(0, newW, newH, DXGI_FORMAT_UNKNOWN, 0);
             createTargetBitmap();
         }
 		paint();
